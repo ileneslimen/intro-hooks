@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Counter from "./components/Counter";
+import Stars from "./components/Stars";
 
 function App() {
+  const [show, setShow] = useState(false);
+
+  const [arr, setArr] = useState([{ name: "ali" }, { name: "salah" }]);
+
+  const addname = (x) => {
+    setArr([...arr, x]);
+  };
+  const toggleshow = () => {
+    setShow(!show);
+  };
+  console.log(show);
+  console.log(arr);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>ws hooks</h1>
+      <Stars></Stars>
+      <button onClick={toggleshow}> {show ? "hide" : "show"} </button>
+      {show && <Counter arr={arr} setArr={setArr} addname={addname}></Counter>}
     </div>
   );
 }
